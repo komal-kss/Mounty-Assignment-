@@ -58,27 +58,21 @@ public class UpcomingMovieDetails extends MainActivity{
         release_date= movieIntent.getExtras().getString("release_date");
         Log.d("title",title+" "+poster+" "+desc+" "+release_date);
 
-//        toolbar =findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        setSupportActionBar(toolbar);
-//        if(getSupportActionBar()!=null)
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        getSupportActionBar().setTitle(title);
 
         moviePoster=findViewById(R.id.imageId);
-        movieDesc=findViewById(R.id.popular_movie_details_descId);
-        movieReleaseDate=findViewById(R.id.popular_movie_details_release_dateId);
-        movieRating=findViewById(R.id.popular_movie_details_ratingId);
+        movieDesc=findViewById(R.id.descId);
+        movieReleaseDate=findViewById(R.id.release_dateId);
+        movieRating=findViewById(R.id.ratingId);
         titleView=findViewById(R.id.title);
+
         titleView.setText(title);
         movieDesc.setText(desc);
-        movieReleaseDate.setText(release_date);
+        movieReleaseDate.setText("Release Date: "+release_date);
 
         //Setting the values
         Glide.with(this).load("https://image.tmdb.org/t/p/w500/"+poster).into(moviePoster);
 //        movieDesc.setText(desc);
-        movieReleaseDate.setText(String.format("%s%s\ns%s", RELEASE_DATE, release_date, RATINGS,rating));
+//        movieReleaseDate.setText(String.format("%s%s\ns%s", RELEASE_DATE, release_date, RATINGS,rating));
 
 
     }

@@ -59,11 +59,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void fetchUpcomingMoviesData()
     {
-        progressDialog1= new ProgressDialog(MainActivity.this, R.style.AppTheme_Dark_Dialog);
-        progressDialog1.setIndeterminate(true);
-        progressDialog1.setMessage("Fetching Movies ...");
-        progressDialog1.setCanceledOnTouchOutside(false);
-        progressDialog1.show();
+//        progressDialog1= new ProgressDialog(MainActivity.this, R.style.AppTheme_Dark_Dialog);
+//        progressDialog1.setIndeterminate(true);
+//        progressDialog1.setMessage("Fetching Movies ...");
+//        progressDialog1.setCanceledOnTouchOutside(false);
+//        progressDialog1.show();
         retrofit=new Retrofit.Builder().baseUrl(Constants.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         TmdbApi tmdbApi=retrofit.create(TmdbApi.class);
         Call<UpcomingMoviesResponse> upcomingMoviesResponseCall=tmdbApi.getUpcomingMovies(Constants.API_KEY);
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<UpcomingMoviesResponse> call, Response<UpcomingMoviesResponse> response) {
                 if(response!=null)
                 {
-                    progressDialog1.dismiss();
+//                    progressDialog1.dismiss();
                     Log.d("tagg","raeagtg46h3");
                     UpcomingMoviesResponse upcomingMoviesResponse=response.body();
 
@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
 
                         String title=resultsBean.getTitle();
                         String imageUrl=resultsBean.getPosterPath();
-                         String description=resultsBean.getOverview();
-                         String releaseDate=resultsBean.getReleaseDate();
-                         String ratings=resultsBean.getPopularity().toString();
-                        Log.d("values",title + " "+imageUrl );
+                        String description=resultsBean.getOverview();
+                        String releaseDate=resultsBean.getReleaseDate();
+                        String ratings=resultsBean.getPopularity().toString();
+                        Log.d("values",title + " "+imageUrl + " "+releaseDate + " "+ ratings );
 
                         UpcomingMovieModel upcomingMovieModel=new UpcomingMovieModel(imageUrl,title,description,releaseDate,ratings);
 
@@ -145,10 +145,12 @@ public class MainActivity extends AppCompatActivity {
 
                        String title=resultsBean.getTitle();
                        String imageUrl=resultsBean.getPosterPath();
-
+                       String description=resultsBean.getOverview();
+                       String releaseDate=resultsBean.getReleaseDate();
+                       String ratings=resultsBean.getPopularity().toString();
                        Log.d("values",title + " "+imageUrl );
 
-                       TopRatedMovie topRatedMovie=new TopRatedMovie(imageUrl,title);
+                       TopRatedMovie topRatedMovie=new TopRatedMovie(imageUrl,title,description,releaseDate,ratings);
 
                        topRatedMovieList.add(topRatedMovie);
 
